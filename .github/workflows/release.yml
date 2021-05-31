@@ -1,0 +1,39 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - "v*"
+
+jobs:
+  Builds:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Get the version
+        id: get_version
+        run: echo ::set-output name=VERSION::${GITHUB_REF/refs\/tags\//}
+      - uses: actions/checkout@v2
+      - name: Use Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: '12.x'
+      - run: npm install -g typescript 
+      - run: yarn
+      - run: tsc
+      - run : npm uninstall -S @types/async && npm uninstall -S @types/fs-extra && npm uninstall -S @types/get-folder-size && npm uninstall -S @types/mime-types && npm uninstall -S @types/node && npm uninstall -S @types/node-telegram-bot-api && npm uninstall -S @types/tar && npm uninstall -S @types/uuid 
+      - name: Compress Build Outputs
+        run: |
+          mkdir TARBot
+          mv node_modules out TARBot/
+          tar -czf TARBot.tar.gz TARBot
+          rm -rf temp
+
+      - name: Create Release
+        uses: softprops/action-gh-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          name: Build ${{ steps.get_version.outputs.VERSION }}
+          files: |
+            TARBot.tar.gz
