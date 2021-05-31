@@ -6,7 +6,7 @@ export const commands = {
     TAR:            'tar|t',
     COUT:           'count|cnt',
     HELP:           'help|h',
-    AUTHORIZE:      'auth|a',
+    AUTHORIZE:      'authorize|a',
     UNAUTHORIZE:    'unauthorize|ua',
     RESTART:        'restart|r'
 };
