@@ -1,6 +1,6 @@
 export const commands = {
     START:          'start',
-    LIST:           'list|l',
+    LIST:           'find|l',
     STATS:          'stats',
     ID:             'id',
     TAR:            'tar|t',
