@@ -3,11 +3,11 @@ export const commands = {
     LIST:           'find|l',
     STATS:          'stats',
     ID:             'id',
-    TAR:            'tar|t',
+    TAR:            'tardrive|t',
     COUT:           'count|cnt',
     HELP:           'help|h',
-    AUTHORIZE:      'authorize|a',
-    UNAUTHORIZE:    'unauthorize|ua',
+    AUTHORIZE:      'autht|a',
+    UNAUTHORIZE:    'unautht|ua',
     RESTART:        'restart|r'
 };
 
